@@ -1,0 +1,63 @@
+#include <iostream>
+using namespace std;
+
+#define MAX 10
+
+class student
+{
+    public:
+        char  name[30];
+        long int  mobileNo;
+        int   marks[5];
+        int   total;
+        float perc;
+    public:
+        //member function to get student's details
+        void getDetails(void);
+        //member function to print student's details
+        void putDetails(void);
+};
+
+void student::getDetails(void){
+    int tot = 0;
+    cout << "Enter name: " ;
+    cin >> name;
+    cout << "Enter mobile number: ";
+    cin >> mobileNo;
+    for(int i = 0; i < 5; i++) {
+        cout << "Enter marks of subj " << i + 1 << " out of 100 ";
+        cin >> marks[i];
+        tot += marks[i];
+    }
+    perc = tot / 500.0 * 100;
+    total = tot;
+}
+
+void student::putDetails(void){
+    cout << endl << "Student details:\n";
+    cout << "Name: "<< name << endl;
+    cout << "Mobile Number: " << mobileNo << endl;
+    cout << "Total: " << total << " Percentage: " << perc ;
+}
+
+int main() {
+    student s[MAX];
+    int n = 1, i;
+
+    cout << "Enter total number of students: ";
+    cin >> n;
+
+    for(i = 0 ; i < n ; i++){
+        cout << "\n\nEnter details of student " << i + 1 << ":\n";
+        s[i].getDetails();
+    }
+
+    cout << endl;
+
+    for(i = 0 ; i < n; i++){
+        cout << "Details of student " << (i + 1) << ":\n";
+        s[i].putDetails();
+    }
+
+    return 0;
+}

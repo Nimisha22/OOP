@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+class reverse {
+   int num, rev = 0, d;
+   public : void getdata(void);
+            void calc(void);
+            void display(void);
+};
+
+void reverse :: getdata(void) {
+   cout << "Enter number" << endl;
+   cin >> num;
+}
+
+void reverse :: display(void) {
+   cout << "Number is"<< num << endl;
+   cout << "Reverse is"<< rev << endl;
+   if (num == rev)
+    cout << "Same";
+   else
+    cout << "Not same";
+}
+
+void reverse :: calc(void) {
+   int no = num;
+   while(no > 0){
+      d = no % 10;
+      rev = rev * 10 + d;
+      no = no / 10;
+   }
+}
+
+
+int main() {
+    reverse n;
+    n.getdata();
+    n.calc();
+    n.display();
+    return 0;
+}

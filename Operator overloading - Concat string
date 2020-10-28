@@ -1,0 +1,65 @@
+Problem Statement - Write a program to concatenate two strings using Operator Overloading. 
+    Create Class string which contains one private data element Character Array.
+    Create three objects of String and using the statement 
+    Str3 = Str1 + Str2 concatenate the string.
+
+-----------------------------------------------------------------------------------------------------
+Code -
+
+
+#include <iostream>
+using namespace std;
+
+class String {
+    string s;
+
+   public:
+    
+    // Constructor
+    String() : s("") {
+    }
+
+    String(string str) : s(str) {
+    }
+
+    //Function to implement operator overloading
+    String operator+(String s2) {
+        String temp(s);
+        temp.s.append(s2.s);
+        return temp;
+    }
+    
+    //Function to display the string
+    void display() {
+        cout << s << endl;
+    }
+};
+
+int main() {
+    //Creating three objects of class
+    String s1("Vishwakarma ");
+    String s2("University");
+    String s3;
+
+    s1.display();
+    s2.display();
+    s3.display();
+
+    //Performing concatenation on two objects
+    s3 = s1 + s2;
+
+    //Displaying the final concatenated string
+    s3.display();
+    return 0;
+}
+
+---------------------------------------
+Output - 
+
+Vishwakarma
+University
+
+Vishwakarma University
+
+Process returned 0 (0x0)   execution time : 0.132 s
+Press any key to continue.

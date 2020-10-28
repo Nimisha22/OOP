@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+
+class calculator {
+   int num1, num2, sum, sub, mul, div, ans;
+   public : void getdata(void);
+            void display(void);
+            void addition(void);
+            void subtraction(void);
+            void multiplication(void);
+            void division(void);
+};
+
+
+void calculator :: getdata(void) {
+   cout << "Enter 2 numbers" << endl;
+   cin >> num1 >> num2;
+}
+
+void calculator :: addition(void) {
+   ans = num1 + num2;
+}
+
+void calculator :: subtraction(void) {
+   ans = num1 - num2;
+}
+
+void calculator :: multiplication(void) {
+   ans = num1 * num2;
+}
+
+void calculator :: division(void) {
+   ans = num1 / num2;
+}
+
+void calculator :: display(void) {
+   cout << "Answer is " << ans;
+}
+
+
+int main()
+{
+    calculator n;
+    n.getdata();
+    int choice;
+    
+    cout << "Please enter number corresponding to which operation you want to perform.\n";
+    cout << "1. Addition"<< endl << "2. Subtraction" << endl <<"3. Multiplication" << endl << "4. Division" << endl;
+    cin >> choice;
+    
+    switch(choice){
+            case 1: n.addition();
+               break;
+            case 2: n.subtraction();
+               break;
+            case 3: n.multiplication();
+               break;
+            case 4: n.division();
+               break;
+            default:
+                cout << "Wrong choice!";
+     }
+    n.display();
+    return 0;
+}

@@ -1,0 +1,141 @@
+Problem Statement - Generate Marksheet of Students of one Class.
+
+----------------------------------------------------------------------------------------
+Code -
+
+#include <iostream>
+#include <string>
+#include <stdio.h>
+
+using namespace std;
+
+#define MAX 60
+
+// Creating class
+class student {
+    private:
+        string  name;
+        int   roll_no;
+        int   marks[4];
+        int   total;
+        float perc;
+        char  grade;
+    public:
+        void getDetails(void);
+        void putDetails(void);
+};
+
+
+// Function to input details from student
+void student::getDetails(void){
+       int tot = 0, g;
+
+       getchar();
+       cout << "Enter name: " ;
+       getline(cin, name);
+
+       cout << "Enter roll number : ";
+       cin >> roll_no;
+
+       for(int i = 0; i < 4; i++) {
+       cout << "Enter marks of subj " << i + 1 << " out of 100 :";
+       cin >> marks[i];
+       tot += marks[i];
+    }
+    perc = tot / 400.0 * 100;
+    total = tot;
+
+
+    // Calculating grade
+    if(perc >= 90)
+        g = 'O';
+    else if(perc >= 70)
+        g = 'A';
+    else if(perc >= 60)
+        g = 'B';
+    else if(perc >= 50)
+        g = 'C';
+    else
+        g = 'F';
+
+    grade = g;
+}
+
+
+// Function to display details of students
+void student::putDetails(void){
+    cout << endl << "Student details:\n";
+    cout << "Name: "<< name << endl;
+    cout << "Roll number: "<< roll_no << endl;
+    cout << "Total: " << total << endl << "Percentage: " << perc << "%" << endl;
+    cout << "Grade: " << grade << endl << endl;
+}
+
+
+int main() {
+    student s[MAX];
+    int n = 1, i;
+
+    cout << "Enter total number of students: ";
+    cin >> n;
+
+    for(i = 0 ; i < n ; i++){
+        cout << "\n\nEnter details of student " << i + 1 << ": \n";
+        s[i].getDetails();
+    }
+
+    cout << endl;
+
+    for(i = 0 ; i < n; i++){
+        cout << "Details of student " << (i + 1) << ":\n";
+        s[i].putDetails();
+    }
+
+    return 0;
+}
+
+
+-----------------------------------------------------------------------------------------
+Output - 
+
+Enter total number of students: 2
+
+
+Enter details of student 1:
+Enter name: Nimisha Doshi
+Enter roll number : 13
+Enter marks of subj 1 out of 100 :90
+Enter marks of subj 2 out of 100 :80
+Enter marks of subj 3 out of 100 :100
+Enter marks of subj 4 out of 100 :90
+
+
+Enter details of student 2:
+Enter name: Nisha Shah
+Enter roll number : 14
+Enter marks of subj 1 out of 100 :20
+Enter marks of subj 2 out of 100 :40
+Enter marks of subj 3 out of 100 :10
+Enter marks of subj 4 out of 100 :50
+
+Details of student 1:
+
+Student details:
+Name: Nimisha Doshi
+Roll number: 13
+Total: 360
+Percentage: 90%
+Grade: O
+
+Details of student 2:
+
+Student details:
+Name: Nisha Shah
+Roll number: 14
+Total: 120
+Percentage: 30%
+Grade: F
+
+
+Process returned 0 (0x0)   execution time : 50.430 s
+Press any key to continue.

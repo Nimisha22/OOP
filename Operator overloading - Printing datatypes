@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+class printData {
+   public:
+      void print(int i) {
+        cout << "Printing int: " << i << endl;
+      }
+      void print(double  f) {
+        cout << "Printing float: " << f << endl;
+      }
+      void print(char* c) {
+        cout << "Printing characters: " << c << endl;
+      }
+};
+
+int main(void) {
+   printData pd;
+
+   // Call print to print integer
+   pd.print(5);
+
+   // Call print to print float
+   pd.print(500.263);
+
+   // Call print to print characters
+   pd.print("Hello C++");
+
+   return 0;
+}
+
+-------------------------------------------------------
+Output 
+
+Printing int: 5
+Printing float: 500.263
+Printing characters: Hello C++
+
+Process returned 0 (0x0)   execution time : 0.921 s
+Press any key to continue.

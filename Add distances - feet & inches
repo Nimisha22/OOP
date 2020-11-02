@@ -1,103 +1,108 @@
 #include <iostream>
-using namespace std;
 
-class Distance {
-   private:
-      int feet;             // 0 to infinite
-      int inches;           // 0 to 12
+class distance {
+  int feet, inches;
 
-   public:
-      // required constructors
-      Distance() {
-         feet = 0;
-         inches = 0;
-      }
-      Distance(int f, int i) {
-         feet = f;
-         inches = i;
-      }
+  public:
+    // required constructors
+    distance(): feet(0), inches(0){}
+    distance(int f, int i): feet(f), inches(i){}
 
-      // method to display distance
-      void displayDistance() {
-         cout << "F: " << feet << " I: " << inches <<endl;
-      }
+    // overloaded += operator
+    distance operator+=(distance d){
+        feet += d.feet;
+        inches += d.inches;
 
-      // overloaded minus (-) operator
-      Distance operator- () {
-         feet = -feet;
-         inches = -inches;
-         return Distance(feet, inches);
-      }
+        while(inches >= 12){
+            feet += 1;
+            inches = inches - 12;
+        }
 
-      void add(Distance d1, Distance d2) {
-         Distance d3;
-         d3.inches = d1.inches + d2.inches;
-         if(d3.inches > 12) {
-            d3.inches -= 12;
-            d3.feet = 1;
-         }
-         d3.feet = d3.feet + d1.feet + d2.feet;
-         cout << "\nFor D3 \nF: " << d3.feet << " I:" << d3.inches <<endl;
+        return distance(feet, inches);
+    }
 
-      }
+    // overloaded < operator
+    bool operator<(distance d){
+        return (feet < d.feet) && (inches < d.inches);
+    }
 
-       bool operator <(const Distance& d) {
-         if(feet < d.feet) {
-            return true;
-         }
-         if(feet == d.feet && inches < d.inches) {
-            return true;
-         }
-
-         return false;
-      }
-
+    // method to display distance
+    void display(){
+        std::cout << "Feet: " << feet << " Inches: " << inches << "\n";
+    }
 };
 
-int main() {
-   Distance D1(11, 10), D2(-5, -11), D3;
+int main(){
+    int f1, f2, i1, i2;
 
-   cout << "Distance 1 is \n" << endl;
-   D1.displayDistance();    // display D1
+    // Taking input from the user
+    std::cout << "For Distance 1:\n\t\tEnter feet ";
+    std::cin >> f1;
+    std::cout << "\t\tEnter inches ";
+    std::cin >> i1;
+    std::cout << "\n\nFor Distance 2:\n\t\tEnter feet ";
+    std::cin >> f2;
+    std::cout << "\t\tEnter inches ";
+    std::cin >> i2;
 
-   -D2;
-   cout << "\n\nDistance 2 is \n" << endl;    // apply negation
-   D2.displayDistance();    // display D2
+    distance d1(f1, i1);
+    distance d2(f2, i2);
 
-   D3.add(D1, D2);
-   cout << "\n\nDistance 3 is \n" << endl;
-   D3.displayDistance();
+    std::cout << "\n\nInitially Distance 1 is :";
+    d1.display();
 
-   if( D1 < D2 ) {
-      cout << "\nD1 is less than D2 " << endl;
-   } else {
-      cout << "\nD2 is less than D1 " << endl;
-   }
+    std::cout << "\n\nInitially Distance 2 is :";
+    d2.display();
 
-   return 0;
+    d1 += d2;
+
+    std::cout << "\n\nAfter performing d1 += d2 Distance 1 is :";
+    d1.display();
+
+    distance d3 = d1 += d2;
+
+    std::cout << "\n\nAfter performing d3 = d1 += d2  Distance 1 is :";
+    d1.display();
+    std::cout << "\n\n\t\t\t\tDistance 3 is :";
+    d3.display();
+
+    if(d1 < d2)
+        std::cout << "\n\nDistance D2 is greater than D1\n";
+    else
+        std::cout << "\n\nDistance D1 is greater than D2\n";
+
+    return 0;
 }
 
-------------------------
-Output -
+-------------------------------------------------------------
+Output 
 
-Distance 1 is
-
-F: 11 I: 10
-
-
-Distance 2 is
-
-F: 5 I: 11
-
-For D3
-F: 17 I:9
+For Distance 1:
+                Enter feet 10
+                Enter inches 5
 
 
-Distance 3 is
+For Distance 2:
+                Enter feet 1
+                Enter inches 10
 
-F: 0 I: 0
 
-D2 is less than D1
+Initially Distance 1 is :Feet: 10 Inches: 5
 
-Process returned 0 (0x0)   execution time : 6.101 s
+
+Initially Distance 2 is :Feet: 1 Inches: 10
+
+
+After performing d1 += d2 Distance 1 is :Feet: 12 Inches: 3
+
+
+After performing d3 = d1 += d2  Distance 1 is :Feet: 14 Inches: 1
+
+
+                                Distance 3 is :Feet: 14 Inches: 1
+
+
+Distance D1 is greater than D2
+
+Process returned 0 (0x0)   execution time : 7.584 s
 Press any key to continue.

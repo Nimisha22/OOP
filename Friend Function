@@ -1,0 +1,35 @@
+Question: WAP to implement a friend function
+
+#include <iostream>
+
+class distance {
+    private:
+        int feet, inch;
+    public:
+        distance(): feet(0), inch(){}
+        distance(int f, int i): feet(f), inch(i){}
+    
+    friend distance set(distance, int, int);
+    friend void show(distance);
+};
+
+distance set(distance d, int f, int i){
+    d.feet = f;
+    d.inch = i;
+    return d;
+}
+
+void show(distance d){
+    std::cout << d.feet << " Feet " << d.inch << " Inches";
+}
+
+int main(){
+    distance d(2, 3);
+    d = set(d, 4, 5);
+    show(d);
+    return 0;
+}
+
+
+Output -
+4 Feet 5 Inches

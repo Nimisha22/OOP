@@ -1,0 +1,43 @@
+Problem Statement: WAP to implement runtime polymorphism
+
+#include <iostream>
+
+class distance {
+    private:
+        int feet, inch;
+    public:
+        distance(): feet(0), inch(0){}
+        distance(int f, int i): feet(f), inch(i){}
+
+        // Displaying output
+        virtual void show() {
+            std::cout << feet << " feet " << inch << "inch";
+        }
+};
+
+
+class realDistance: public distance {
+    private:
+        int feet, inch;
+    public:
+        realDistance(): feet(0), inch(0){}
+        realDistance(int f, int i): feet(f), inch(i){}
+
+        // Displaying output
+        void show() {
+            std::cout << "I am " << feet << " feet and " << inch << " inches long";
+        }
+};
+
+
+int main() {
+    realDistance rd(5, 4);
+    distance *d = &rd;
+    d->show();
+    return 0;
+}
+
+---------------------------------------------------
+output
+
+I am 5 feet and 4 inches long

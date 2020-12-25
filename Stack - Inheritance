@@ -25,8 +25,7 @@ public:
 class Stack2: public Stack {
 public:
     void push(int var) {
-        cout << "\nPushing " << var;
-        if(top > 4) {
+        if(top > 2) {
             cout << "Stack Overflow";
             exit(1);
         }
@@ -43,7 +42,8 @@ public:
 };
 
 
-int main() {
+int main()
+{
     Stack2 s1;
     s1.push(1);
     s1.push(2);

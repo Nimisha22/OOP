@@ -1,0 +1,59 @@
+/*
+Name - Nimisha Doshi
+Division - B
+Roll no - 13
+SRN - 201900273
+Problem Statement - Write a program to find the greatest of two
+given numbers in two different classes using friend function
+
+*/
+
+#include<iostream>
+
+using namespace std;
+
+class Second; //declaring class B
+
+class First {
+private:
+    int no1;
+
+public:
+    //constructor
+    First(int no1) {
+        this->no1 = no1;
+    }
+
+    friend int max(First no1, Second no2);
+};
+
+class Second {
+private:
+    int no2;
+
+public:
+    //constructor
+    Second(int no2) {
+        this->no2 = no2;
+    }
+
+    friend int max(First no1, Second no2);
+};
+
+int max(First no1, Second no2) {
+    return (no1.no1 > no2.no2 ? no1.no1 : no2.no2);
+}
+
+int main() {
+    int first, second;
+    cout << "Enter first number  ";
+    cin >> first;
+    First no1(first);
+
+    cout << "Enter second number  ";
+    cin >> second;
+    Second no2(second);
+
+    cout << "/nGreater number is : " << max(no1, no2);
+    return 0;
+}
